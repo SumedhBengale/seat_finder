@@ -14,3 +14,4 @@ The app contains the following features
     - Error handling
     - Responsive UI
     - Seperation of UI and business logic
+    - Compatibility with Android, iOS, Web, Windows, Linux, MacOS
