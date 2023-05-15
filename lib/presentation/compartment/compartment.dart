@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:seat_finder/presentation/seat/seat.dart';
+import 'package:seat_finder/presentation/seat/seat_layout.dart';
 
 class Compartment extends StatefulWidget {
-  final int Cindex;
-  const Compartment(this.Cindex, {Key? key}) : super(key: key);
+  final int cIndex;
+  const Compartment(this.cIndex, {Key? key}) : super(key: key);
 
   @override
   State<Compartment> createState() => _CompartmentState();
@@ -16,7 +16,7 @@ class _CompartmentState extends State<Compartment> {
     return AspectRatio(
       aspectRatio: 2,
       child: Container(
-        margin: const EdgeInsets.only(left: 5, right: 5, top: 10),
+        margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -36,9 +36,9 @@ class _CompartmentState extends State<Compartment> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 3, right: 3),
                             child: Row(children: [
-                              Seat(widget.Cindex * 8 + 1),
-                              Seat(widget.Cindex * 8 + 2),
-                              Seat(widget.Cindex * 8 + 3)
+                              SeatLayout(widget.cIndex * 8 + 1),
+                              SeatLayout(widget.cIndex * 8 + 2),
+                              SeatLayout(widget.cIndex * 8 + 3)
                             ]),
                           ),
                         ),
@@ -82,9 +82,9 @@ class _CompartmentState extends State<Compartment> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 3, right: 3),
                             child: Row(children: [
-                              Seat(widget.Cindex * 8 + 4),
-                              Seat(widget.Cindex * 8 + 5),
-                              Seat(widget.Cindex * 8 + 6)
+                              SeatLayout(widget.cIndex * 8 + 4),
+                              SeatLayout(widget.cIndex * 8 + 5),
+                              SeatLayout(widget.cIndex * 8 + 6)
                             ]),
                           ),
                         ),
@@ -132,7 +132,7 @@ class _CompartmentState extends State<Compartment> {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 3, right: 3),
-                            child: Seat(widget.Cindex * 8 + 7),
+                            child: SeatLayout(widget.cIndex * 8 + 7),
                           ),
                         ),
                         // The border container
@@ -174,7 +174,7 @@ class _CompartmentState extends State<Compartment> {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 3, right: 3),
-                            child: Seat(widget.Cindex * 8 + 8),
+                            child: SeatLayout(widget.cIndex * 8 + 8),
                           ),
                         ),
                         // The border container

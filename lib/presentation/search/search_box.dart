@@ -1,4 +1,7 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seat_finder/logic/cubits/bogey/bogey_cubit.dart';
 
 class SearchBox extends StatefulWidget {
   const SearchBox({super.key});
@@ -8,6 +11,7 @@ class SearchBox extends StatefulWidget {
 }
 
 class _SearchBoxState extends State<SearchBox> {
+  final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     //Search box with search button
@@ -26,19 +30,31 @@ class _SearchBoxState extends State<SearchBox> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text(
-                        'Search',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Color(0xFF80CAFF),
-                            fontWeight: FontWeight.w500),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                                fontSize: 15,
+                                color: Color(0xFF80CAFF),
+                                fontWeight: FontWeight.w500),
+                            hintText: 'Seat number or Berth',
+                          ),
+                          controller: searchController,
+                          style: const TextStyle(
+                              fontSize: 15,
+                              color: Color(0xFF80CAFF),
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                     ),
                     ElevatedButton(
                         //Button size
                         style: ButtonStyle(
+                          elevation: MaterialStateProperty.all<double>(0),
                           minimumSize: MaterialStateProperty.all<Size>(
                               const Size(100, double.infinity)),
                           //Rounded rectangle border
@@ -49,8 +65,13 @@ class _SearchBoxState extends State<SearchBox> {
                                       side: const BorderSide(
                                           color: Color(0xFF80CAFF)))),
                         ),
-                        onPressed: () {},
-                        child: const Text("Search")),
+                        onPressed: () => context
+                            .read<BogeyCubit>()
+                            .search(searchController.text),
+                        child: const Text(
+                          "Search",
+                          style: TextStyle(fontSize: 15),
+                        )),
                   ],
                 ))));
   }

@@ -16,13 +16,42 @@ class Bogey extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (state is BogeyLayoutData) {
             return ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return Compartment(index);
               },
               itemCount: state.totalCompartments,
             );
+          } else if (state is BogeyError) {
+            return Scaffold(
+              body: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Compartment(index);
+                },
+                itemCount: state.totalCompartments,
+              ),
+              bottomSheet: Container(
+                decoration: const BoxDecoration(
+                    color: Color(0xff0096ff),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                height: state.error ? 50 : 5,
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    state.errorMessage,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+            );
           } else {
-            return const Text('Error');
+            return const CircularProgressIndicator();
           }
         },
       ),

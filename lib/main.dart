@@ -19,13 +19,12 @@ class MyApp extends StatelessWidget {
             lazy: false,
           ),
         ],
-        child: MaterialApp(
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Seat Finder',
           //Generate theme from color
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: const SeatFinder(),
+
+          home: SeatFinder(),
         ));
   }
 }
